@@ -3,6 +3,7 @@ abstract: 'Simple DBI wrapper'
 author:
   - 'Masahiro Nagano <kazeburo {at} gmail.com>'
 build_requires:
+  DBD::SQLite: 1.27
   ExtUtils::MakeMaker: 6.42
   Test::More: 0.96
   Test::Requires: 0
@@ -31,4 +32,4 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: git://github.com/kazeburo/DBIx-Sunny.git
-version: 0.01
+version: 0.02
