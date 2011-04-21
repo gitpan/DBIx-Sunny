@@ -33,4 +33,4 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: git://github.com/kazeburo/DBIx-Sunny.git
-version: 0.04
+version: 0.05
