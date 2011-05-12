@@ -8,6 +8,7 @@ build_requires:
   ExtUtils::MakeMaker: 6.42
   Test::More: 0.96
   Test::Requires: 0
+  Test::TCP: 0
   Test::mysqld: 0
 configure_requires:
   ExtUtils::MakeMaker: 6.42
@@ -34,4 +35,4 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: git://github.com/kazeburo/DBIx-Sunny.git
-version: 0.06
+version: 0.07
