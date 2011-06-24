@@ -21,6 +21,7 @@ t/01_basic.t
 t/02_rootclass.t
 t/schema_00_compile.t
 t/schema_01_basic.t
+t/scheme_02_args.t
 t/TestSchema.pm
 xt/01_podspell.t
 xt/02_perlcritic.t
