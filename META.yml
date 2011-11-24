@@ -4,7 +4,7 @@ author:
   - 'Masahiro Nagano <kazeburo {at} gmail.com>'
 build_requires:
   Capture::Tiny: 0
-  DBD::SQLite: 1.27
+  DBD::SQLite: 1.31
   ExtUtils::MakeMaker: 6.42
   Test::More: 0.96
   Test::Requires: 0
@@ -35,4 +35,4 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: git://github.com/kazeburo/DBIx-Sunny.git
-version: 0.14
+version: 0.15
