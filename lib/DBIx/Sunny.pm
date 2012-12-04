@@ -5,7 +5,7 @@ use warnings;
 use 5.008005;
 use DBI 1.615;
 
-our $VERSION = '0.18';
+our $VERSION = '0.19';
 
 use parent qw/DBI/;
 
@@ -30,6 +30,7 @@ package DBIx::Sunny::db;
 our @ISA = qw(DBI::db);
 
 use DBIx::TransactionManager;
+use Scalar::Util qw/weaken/;
 
 sub connected {
     my $dbh = shift;
@@ -61,7 +62,11 @@ sub connect_info { $_[0]->{private_connect_info} }
 
 sub txn_scope {
     my $self = shift;
-    DBIx::TransactionManager->new($self)->txn_scope(
+    if ( ! $self->{private_txt_manager} ) {
+        $self->{private_txt_manager} = DBIx::TransactionManager->new($self);
+        weaken($self->{private_txt_manager}->{dbh});
+    } 
+    $self->{private_txt_manager}->txn_scope(
         caller => [caller(0)]
     );
 }

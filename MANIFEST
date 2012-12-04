@@ -19,6 +19,7 @@ README
 t/00_compile.t
 t/01_basic.t
 t/02_rootclass.t
+t/03_txn.t
 t/schema_00_compile.t
 t/schema_01_basic.t
 t/scheme_02_args.t

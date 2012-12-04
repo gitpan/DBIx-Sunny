@@ -31,9 +31,10 @@ requires:
   DBI: 1.615
   DBIx::TransactionManager: 0
   Data::Validator: 0
+  Scalar::Util: 0
   parent: 0
   perl: 5.8.5
 resources:
   license: http://dev.perl.org/licenses/
   repository: git://github.com/kazeburo/DBIx-Sunny.git
-version: 0.18
+version: 0.19
