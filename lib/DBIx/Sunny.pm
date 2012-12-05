@@ -5,7 +5,7 @@ use warnings;
 use 5.008005;
 use DBI 1.615;
 
-our $VERSION = '0.20';
+our $VERSION = '0.21';
 
 use parent qw/DBI/;
 
@@ -265,7 +265,7 @@ Shortcut for prepare, execute.
 
 =head1 AUTHOR
 
-Masahiro Nagano E<lt>kazeburo {at} gmail.comE<gt>
+Masahiro Nagano E<lt>kazeburo KZBRKZBR@ gmail.comE<gt>
 
 =head1 SEE ALSO
 

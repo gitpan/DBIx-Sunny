@@ -1,20 +1,17 @@
 ---
 abstract: 'Simple DBI wrapper'
 author:
-  - 'Masahiro Nagano <kazeburo {at} gmail.com>'
+  - 'Masahiro Nagano E<lt>kazeburo KZBRKZBR@ gmail.comE<gt>'
 build_requires:
   Capture::Tiny: 0
   DBD::SQLite: 1.31
-  ExtUtils::MakeMaker: 6.59
-  Test::More: 0.96
+  Test::More: 0.98
   Test::Requires: 0
   Test::TCP: 0
-  Test::mysqld: 0
 configure_requires:
-  ExtUtils::MakeMaker: 6.59
-distribution_type: module
-dynamic_config: 1
-generated_by: 'Module::Install version 1.06'
+  Module::Build: 0.38
+dynamic_config: 0
+generated_by: 'Module::Build version 0.4003, CPAN::Meta::Converter version 2.120921'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -25,6 +22,19 @@ no_index:
     - inc
     - t
     - xt
+provides:
+  DBIx::Sunny:
+    file: lib/DBIx/Sunny.pm
+    version: 0.21
+  DBIx::Sunny::Schema:
+    file: lib/DBIx/Sunny/Schema.pm
+    version: 0
+  DBIx::Sunny::db:
+    file: lib/DBIx/Sunny.pm
+    version: 0
+  DBIx::Sunny::st:
+    file: lib/DBIx/Sunny.pm
+    version: 0
 requires:
   Class::Accessor::Lite: 0.05
   Class::Data::Inheritable: 0
@@ -33,8 +43,7 @@ requires:
   Data::Validator: 0
   Scalar::Util: 0
   parent: 0
-  perl: 5.8.5
+  perl: 5.008005
 resources:
   license: http://dev.perl.org/licenses/
-  repository: git://github.com/kazeburo/DBIx-Sunny.git
-version: 0.20
+version: 0.21

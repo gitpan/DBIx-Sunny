@@ -1,27 +1,89 @@
-This is Perl module DBIx::Sunny.
+NAME
+    DBIx::Sunny - Simple DBI wrapper
 
-INSTALLATION
+SYNOPSIS
+        use DBIx::Sunny;
 
-DBIx::Sunny installation is straightforward. If your CPAN shell is set up,
-you should just be able to do
+        my $dbh = DBIx::Sunny->connect(...);
 
-    % cpan DBIx::Sunny
+        # or 
 
-Download it, unpack it, then build it as per the usual:
+        use DBI;
 
-    % perl Makefile.PL
-    % make && make test
+        my $dbh = DBI->connect(.., {
+            RootClass => 'DBIx::Sunny',
+            PrintError => 0,
+            RaiseError => 1,
+        });
 
-Then install it:
+DESCRIPTION
+    DBIx::Sunny is a simple DBI wrapper. It provides better usability for
+    you. This module based on Amon2::DBI. DBIx::Sunny supports only SQLite
+    and MySQL.
 
-    % make install
+FEATURES
+    Set AutoInactiveDestroy to true.
+        DBIx::Sunny sets AutoInactiveDestroy as true.
 
-DOCUMENTATION
+    [SQLite/MySQL] Auto encode/decode utf-8
+        DBIx::Sunny sets sqlite_unicode and mysql_enable_utf8 automatically.
 
-DBIx::Sunny documentation is available as in POD. So you can do:
+    [SQLite] Performance tuning
+        DBIx::Sunny sets sqlite_use_immediate_transaction to true, and
+        executes these PRAGMA statements
 
-    % perldoc DBIx::Sunny
+          PRAGMA journal_mode = WAL
+          PRAGMA synchronous = NORMAL
 
-to read the documentation online with your favorite pager.
+    Nested transaction management.
+        DBIx::Sunny supports nested transaction management based on RAII
+        like DBIx::Class or DBIx::Skinny. It uses DBIx::TransactionManager
+        internally.
 
-Masahiro Nagano
+    Error Handling
+        DBIx::Sunny sets RaiseError and ShowErrorStatement as true.
+        DBIx::Sunny raises exception and shows current statement if your
+        $dbh occurred exception.
+
+    SQL comment
+        DBIx::Sunny adds file name and line number as SQL comment that
+        invokes SQL statement.
+
+    Easy access to last_insert_id
+        DBIx::Sunny's last_insert_id needs no arguments. It's shortcut for
+        mysql_insertid or last_insert_rowid.
+
+    Auto expanding arrayref bind parameters
+        select_(one|row|all) and query methods support auto-expanding
+        arrayref bind parameters.
+
+          $dbh->select_all('SELECT * FROM id IN (?)', [1 2 3])
+          #SQL: 'SELECT * FROM id IN (?,?,")'
+          #@BIND: (1, 2, 3)
+
+ADDITIONAL METHODS
+    $col = $dbh->select_one($query, @bind);
+        Shortcut for prepare, execute and fetchrow_arrayref->[0]
+
+    $row = $dbh->select_row($query, @bind);
+        Shortcut for prepare, execute and fetchrow_hashref
+
+    $rows = $dbh->select_all($query, @bind);
+        Shortcut for prepare, execute and selectall_arrayref(.., { Slice =>
+        {} }, ..)
+
+    $dbh->query($query, @bind);
+        Shortcut for prepare, execute.
+
+AUTHOR
+    Masahiro Nagano <kazeburo KZBRKZBR@ gmail.com>
+
+SEE ALSO
+    DBI, Amon2::DBI
+
+LICENSE
+    Copyright (C) Masahiro Nagano
+
+    This library is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself.
+
